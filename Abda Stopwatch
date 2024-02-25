@@ -1,0 +1,32 @@
+import time
+
+def stopwatch():
+    input("Press Enter to start the stopwatch...")
+    start_time = time.time()
+    print("Stopwatch started.")
+
+    try:
+        while True:
+            elapsed_time = time.time() - start_time
+            hours = int(elapsed_time // 3600)
+            minutes = int((elapsed_time % 3600) // 60)
+            seconds = int(elapsed_time % 60)
+            milliseconds = int((elapsed_time - int(elapsed_time)) * 1000)
+            print(f"\r{hours:02}:{minutes:02}:{seconds:02}.{milliseconds:03}", end="")
+            time.sleep(0.01)
+
+    except KeyboardInterrupt:
+        print("\nStopwatch stopped.")
+        elapsed_time = time.time() - start_time
+        print("Total elapsed time: ", end="")
+        print_time(elapsed_time)
+
+def print_time(seconds):
+    hours = int(seconds // 3600)
+    minutes = int((seconds % 3600) // 60)
+    seconds = int(seconds % 60)
+    milliseconds = int((seconds - int(seconds)) * 1000)
+    print(f"{hours:02}:{minutes:02}:{seconds:02}.{milliseconds:03}")
+
+if __name__ == "__main__":
+    stopwatch()
